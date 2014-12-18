@@ -78,9 +78,11 @@ USE_L10N = True
 USE_TZ = True
 MEDIA_ROOT = os.path.join(SETTINGS_DIR, '/assets')
 MEDIA_URL = ''
-STATIC_ROOT = ''
+STATIC_ROOT = os.path.join(os.path.dirname(__file__), 'static')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = ( )
+STATICFILES_DIRS = (
+    STATIC_ROOT,
+)
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -89,6 +91,8 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 't*x_8i7f2$0!8e$*jyki9p0x%b(rczr5@rb8oc%ct0ca8y7%+o'

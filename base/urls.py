@@ -8,6 +8,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^about\-us/', include('about_us.urls')),
+    url(r'^adminx/', include('about_us.urls')),
     url(r'^$', 'about_us.views.home', name='home'),
 )
 
