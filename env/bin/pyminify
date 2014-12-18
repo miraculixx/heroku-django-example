@@ -1,0 +1,10 @@
+#!/home/patrick/projects/heroku-django-example/env/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'django-htmlmin==0.5.2','console_scripts','pyminify'
+__requires__ = 'django-htmlmin==0.5.2'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('django-htmlmin==0.5.2', 'console_scripts', 'pyminify')()
+    )

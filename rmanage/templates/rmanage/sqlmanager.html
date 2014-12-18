@@ -1,0 +1,81 @@
+{% extends 'base.html'%}
+{% load i18n %}
+{% block content %}
+
+<form method="GET">
+	<label>Enter query</label>
+	<textarea class="form-control" id="id_query" width="100%" rows="10"cols="50" name="query">{{query}}</textarea>			
+	</input>
+ <br>
+	<button class="btn btn-primary" name="action" value="search">
+		Search
+	</button>
+	<button class="btn btn-default" name="action" value="getcsv">
+		Get CSV (no keys)
+	</button>
+</form>
+
+{% if error %}
+<div class="alert alert-danger">
+	{{ error }}
+</div>
+{% endif %}
+
+<!-- pageinator -->
+<div>
+	<ul class="pagination">
+		{% if page.has_previous %}
+		<li>
+			<a href="?page={{page.previous_page_number}}">&laquo;</a>
+		</li>
+		{% endif %}
+		<li>
+			<a href=".">{{page.number}}</a>
+		</li>
+		{% if page.has_next %}
+		<li>
+			<a href="?page={{page.next_page_number}}">&raquo;</a>
+
+		</li>
+		{% endif %}
+	</ul>
+</div>
+
+<!-- results -->
+<div class="panel-group" id="accordion">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">{% trans 'Results' %}&nbsp;{{query}}</a></h4>
+		</div>
+		<div id="collapseOne" class="panel-collapse collapse in">
+			<div class="row">
+				<div class="col-md-12" style="overflow:auto">
+				<table class="table table-bordered">
+					<thead>
+					{% for column in header %}
+					
+						<th>{{column}}</th>
+					
+					{% endfor %}
+					</thead>
+					<tbody>
+						{% for result in page.object_list %}
+						<tr>
+							{% for value in result %}
+							<td>{{value|truncatechars:20}}</td>
+							{% endfor %}
+						</tr>
+
+						{% empty %}
+						<div class="alert alert-warning">
+							<strong>{{query}}</strong> produced no results
+						</div>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

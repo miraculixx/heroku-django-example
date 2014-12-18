@@ -2,6 +2,9 @@ import os
 import sys
 import urlparse
 
+import dj_database_url
+
+
 SETTINGS_DIR = os.path.abspath( os.path.dirname( __file__ ) )
 
 DEBUG = True
@@ -14,6 +17,17 @@ ADMINS = (
 MANAGERS = ADMINS
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'heroku_example', # CREATE DATABASE heroku_example CHARACTER SET utf8 COLLATE utf8_general_ci;
+#         'USER': 'root',
+#         'PASSWORD': 'root',
+#         'HOST': '',
+#         'PORT': '',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -24,6 +38,8 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+DATABASES['default'] = dj_database_url.config(default='sqlite:///db.sqlite')
 
 urlparse.uses_netloc.append('postgres')
 urlparse.uses_netloc.append('mysql')
