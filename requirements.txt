@@ -1,5 +1,5 @@
 BeautifulSoup==3.2.1
-Django==1.4
+Django==1.6
 MySQL-python==1.2.3
 South==0.7.5
 amqplib==1.0.2

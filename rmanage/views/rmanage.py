@@ -3,9 +3,7 @@ import sys
 import traceback
 
 from django.conf import settings
-from django.conf.urls import patterns, url
 from django.contrib.auth import authenticate
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render

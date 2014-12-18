@@ -81,7 +81,7 @@ MEDIA_URL = ''
 STATIC_ROOT = os.path.join(os.path.dirname(__file__), 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    STATIC_ROOT,
+    os.path.join(os.path.dirname(__file__), 'static'),
 )
 
 # List of finder classes that know how to find static files in
@@ -129,7 +129,8 @@ INSTALLED_APPS = (
     'gunicorn',
     'kombu.transport.django',
     'djcelery',
-    'about_us'
+    'about_us',
+    'rmanage'
 )
 
 BROKER_BACKEND = 'django'
@@ -157,3 +158,4 @@ LOGGING = {
         },
     }
 }
+TMP_FOLDER='/tmp'
