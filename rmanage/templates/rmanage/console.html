@@ -1,0 +1,16 @@
+<html>
+	<body>
+		<p>django remote manage console</p>
+		<p>Enter manage.py command, or any of env, settings, request, request.META </p>
+		<form method="POST">
+			{% csrf_token %}
+			<input autofocus style="width:100%" type="text" id="id_command" name="command" maxlength="200">
+		</form>
+			{% if log %}
+			<p>Output of {{command}}</p>
+<pre>
+{{log}}
+</pre>
+			{% endif %}
+	</body>
+</html>
